@@ -1,0 +1,7 @@
+﻿@model  IEnumerable<Vidly.Models.Customer>
+
+
+@foreach (var customer in Model)
+{
+    @Html.ActionLink(customer.Name,"Details","Customers",new{id = customer.Id}, null)<br/>
+}
