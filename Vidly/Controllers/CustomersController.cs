@@ -31,18 +31,10 @@ namespace Vidly.Controllers
 
         public ActionResult Details(int? id)
         {
-           var customer = _context.Customers.SingleOrDefault(x => x.Id == id);
+           var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(x => x.Id == id);
             return View(customer);
         }
 
-        private List<Customer> GetData()
-        {
-            var customers = new List<Customer>
-            {
-                new Customer{Id = 1, Name = "Customer 1"},
-                new Customer{Id = 2, Name = "Customer 2"}
-            };
-            return customers;
-        }
+        
     }
 }
