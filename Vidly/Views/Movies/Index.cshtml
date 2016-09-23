@@ -4,12 +4,22 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Movie</th>
+        <th>Genre</th>
+    </tr>
+    </thead>
 @foreach (var movie in Model)
 {
 
-    <p>@movie.Name</p>
-    <br/>
+    <tr>
+        <td>@movie.Name</td>
+        <td>@movie.Genre.Name</td>
+    </tr>
+    
     
 }
+    </table>
 
