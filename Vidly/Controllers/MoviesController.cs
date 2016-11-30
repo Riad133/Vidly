@@ -68,6 +68,10 @@ namespace Vidly.Controllers
             var geners = _context.Genres.ToList();
             var movieView = new MovieFormViewModel
             {
+                Movie = new Movie
+                {
+                  ReleaseDate  = Convert.ToDateTime( "1 Jan 1901").Date
+                },
                 Genres = geners
             };
             return View("MovieForm",movieView);
@@ -76,6 +80,21 @@ namespace Vidly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+
+                var viewModel = new MovieFormViewModel
+                {
+                    Movie = new Movie
+                    {
+                        ReleaseDate = Convert.ToDateTime("1 Jan 1901")
+                    },
+
+                    Genres = _context.Genres.ToList()
+                };
+                return View("MovieForm", viewModel);
+
+            }
             if (movie.Id == 0)
             {
                 _context.Movies.Add(movie);
